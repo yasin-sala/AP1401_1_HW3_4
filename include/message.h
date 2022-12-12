@@ -31,19 +31,23 @@ public:
     {
         // T msg = *(const_cast<T*>(&c));
         // msg.print(os);
+
+        // c.print(os);
+        // return os;
+
         T* msg = (const_cast<T*>(&c));
         msg->print(os);
         return os;
     }
 
-private: ///////////////////////////////////////////////////////////////////////////////////////////////
+private:
     std::string type; // type of the message ("text", "voice", ...)
     std::string sender; // the username who send this message
     std::string receiver; // the username whom this message is intended for
     std::string time; // creation time of the message
 };
 
-class TextMessage : public Message { ////////////////////////////////////////////////////////////////////////////
+class TextMessage : public Message {
 public:
     TextMessage(std::string text, std::string sender, std::string receiver);
     std::string get_text();
@@ -61,7 +65,7 @@ private:
     std::string text;
 };
 
-class VoiceMessage : public Message { //////////////////////////////////////////////////////////////////////////
+class VoiceMessage : public Message {
 public:
     VoiceMessage(std::string sender, std::string receiver);
 
@@ -73,10 +77,10 @@ public:
         os << "message time: " << this->get_time() << std::endl;
         os << "voice : ";
         for (size_t i {}; i < voice.size() - 1; i++)
-            std::cout << static_cast<int>(voice[i]) << " ";
-        std::cout << static_cast<int>(voice[voice.size()]) << std::endl;
+            os << static_cast<int>(voice[i]) << " ";
+        os << static_cast<int>(voice[voice.size()]) << std::endl;
         os << "*************************" << std::endl;
-    }
+        }
 
     std::vector<unsigned char> get_voice();
 

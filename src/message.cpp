@@ -39,32 +39,10 @@ std::string Message::get_time()
     return time;
 }
 
-// void Message::print(std::ostream &os)
-// {
-//     os << "***********************************" << std::endl;
-//     os << this->get_sender() << " -> " << this->get_receiver() << std::endl;
-//     os << "message type :" << this->get_type() << std::endl;
-//     os << "message time :" << this->get_time() << std::endl;
-//     os << "***********************************" << std::endl;
-// }
-
-// std::ostream& Message::operator<<(std::ostream &os, const Message &c)
-// {
-//     Message::print(os);
-//     return os;
-// }
-//
-//
-//
-
-//
-//
-
 TextMessage::TextMessage(std::string text, std::string sender, std::string receiver)
     : Message("text", sender, receiver)
     , text { text }
 {
-    // this->text = _text;
 }
 
 std::string TextMessage::get_text()
@@ -72,26 +50,12 @@ std::string TextMessage::get_text()
     return text;
 }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 VoiceMessage::VoiceMessage(std::string sender, std::string receiver)
     : Message("voice", sender, receiver)
-
 {
     std::vector<unsigned char> a {};
     for (size_t i {}; i < 5; i++)
-        a.push_back(static_cast<char>(rand() % 256));
+        a.push_back(static_cast<unsigned char>(rand() % 256));
 
     voice = a ;
 }
